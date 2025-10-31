@@ -1,0 +1,17 @@
+commit b64cdb213ada449b618883c4dc6334cfecb0bdb8
+Author: Ryan Lucas Lo <rll9982@rit.edu>
+Date:   Fri Oct 31 04:19:09 2025 -0400
+
+    finished implementing the rest of the functions
+
+commit 75f7199d58d40926762a861ebff4ca794deb1214
+Author: Ryan Lucas Lo <rll9982@rit.edu>
+Date:   Fri Oct 31 03:34:41 2025 -0400
+
+    implemented mat_duplicate, mat_equals, mat_set_cell, mat_get_cell.
+
+commit 2dcc03dbf52b9ee8e5d73a5b28eefe3d4f087c67
+Author: Ryan Lucas Lo <rll9982@rit.edu>
+Date:   Fri Oct 31 03:13:55 2025 -0400
+
+    created matrix.c & implmemented mat_print, mat_destroy, mat_create.
