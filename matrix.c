@@ -62,4 +62,85 @@ void mat_print(Matrix mat, FILE *stream) {
     }
 }
 
+void mat_init(Matrix mat, const float data[]) {
+    if (mat == NULL || data == NULL) {
+        return;
+    }
+
+    size_t total = mat->rows * mat->cols;
+    for (size_t i = 0; i < total; i++) {
+        mat->data[i] = data[i];
+    }
+}
+
+Status mat_get_cell(Matrix mat, float *data, size_t row, size_t col) {
+    if (mat == NULL || data == NULL) {
+        return FAILURE;
+    }
+
+    // Bounds check (1-based API)
+    if (row < 1 || row > mat->rows || col < 1 || col > mat->cols) {
+        return FAILURE;
+    }
+
+    // Convert to 0-based indexing internally
+    size_t index = (row - 1) * mat->cols + (col - 1);
+    *data = mat->data[index];
+
+    return SUCCESS;
+}
+
+Status mat_set_cell(Matrix mat, float value, size_t row, size_t col) {
+    if (mat == NULL) {
+        return FAILURE;
+    }
+
+    // Bounds check
+    if (row < 1 || row > mat->rows || col < 1 || col > mat->cols) {
+        return FAILURE;
+    }
+
+    // Convert to 0-based indexing
+    size_t index = (row - 1) * mat->cols + (col - 1);
+    mat->data[index] = value;
+
+    return SUCCESS;
+}
+
+bool mat_equals(const Matrix m1, const Matrix m2) {
+    if (m1 == NULL || m2 == NULL) {
+        return false;
+    }
+
+    if (m1->rows != m2->rows || m1->cols != m2->cols) {
+        return false;
+    }
+
+    size_t total = m1->rows * m1->cols;
+    for (size_t i = 0; i < total; i++) {
+        if (m1->data[i] != m2->data[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+Matrix mat_duplicate(const Matrix mat) {
+    if (mat == NULL) {
+        return NULL;
+    }
+
+    Matrix copy = mat_create(mat->rows, mat->cols);
+    if (copy == NULL) {
+        return NULL;
+    }
+
+    size_t total = mat->rows * mat->cols;
+    for (size_t i = 0; i < total; i++) {
+        copy->data[i] = mat->data[i];
+    }
+
+    return copy;
+}
 
