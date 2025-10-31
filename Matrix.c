@@ -249,20 +249,3 @@ Matrix mat_transpose(const Matrix mat) {
     return result;
 }
 
-void mat_print(const Matrix mat, FILE *stream) {
-    if (mat == NULL || stream == NULL) {
-        return;
-    }
-
-    fprintf(stream, "%zu rows, %zu columns:\n", mat->rows, mat->cols);
-
-    for (size_t r = 0; r < mat->rows; r++) {
-        for (size_t c = 0; c < mat->cols; c++) {
-            float value = mat->data[r * mat->cols + c];
-            fprintf(stream, "%8.3f", value);
-        }
-        fprintf(stream, "\n");
-    }
-}
-
-
